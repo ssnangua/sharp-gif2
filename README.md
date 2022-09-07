@@ -58,7 +58,7 @@ const GIF = require("sharp-gif2");
     resizeOptions: {},
     // Background option for sharp.extend()
     extendBackground: { r: 0, g: 0, b: 0, alpha: 0 },
-    // gifenc GIFEncoder options
+    // gifenc GIFEncoder() options
     gifEncoderOptions: {},
     // gifenc quantize() options
     gifEncoderQuantizeOptions: {},

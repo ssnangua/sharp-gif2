@@ -32,6 +32,8 @@ async function traceEncodingProgress() {
 async function concatAnimatedGIFs() {
   const image = await GIF.createGif({
     transparent: true,
+    maxColors: 32,
+    format: "rgb444",
   })
     .addFrame([
       sharp("./1.gif", { animated: true }),
@@ -51,6 +53,8 @@ async function readGif() {
 
   const gif = await reader.toGif({
     transparent: true,
+    maxColors: 32,
+    format: "rgb444",
   });
   const image = await gif.toSharp();
   image.toFile("./output/remake.gif");

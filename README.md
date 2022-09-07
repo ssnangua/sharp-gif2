@@ -84,7 +84,11 @@ const GIF = require("sharp-gif2");
 
   // You can even concat animated GIFs
   const image = await GIF
-    .createGif({ transparent: true, })
+    .createGif({
+      transparent: true,
+      format: "rgb444",
+      maxColors: 32,
+    })
     .addFrame([
       sharp("./1.gif", { animated: true }),
       sharp("./2.gif", { animated: true }),
@@ -153,7 +157,7 @@ Returns `Gif` - Return the Gif instance for chaining.
 Encode all frames and resolve with an animated Sharp instance.
 
 - `progress` (info: Object) => void _(optional)_ - Frames encoding progress.
-  - `info` Object - **Note** that the frames count contains GIF header end footer (as 2 frames).
+  - `info` Object
     - `total` Number - Total frames count.
     - `encoded` Number - Encoded frames count.
 - `encoder` GIFEncoder _(optional)_ - Custom [GIFEncoder](https://github.com/mattdesl/gifenc#gif--gifencoderopts--).

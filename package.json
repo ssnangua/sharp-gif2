@@ -1,0 +1,39 @@
+{
+  "name": "sharp-gif2",
+  "version": "0.1.0",
+  "description": "Generate animated GIF/WebP for sharp base on gifenc.",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "types": "./index.d.ts",
+  "main": "./index.js",
+  "keywords": [
+    "sharp",
+    "animated",
+    "gif",
+    "image",
+    "convert"
+  ],
+  "author": "ssnangua",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ssnangua/sharp-gif2"
+  },
+  "files": [
+    "index.js",
+    "index.d.ts",
+    "README.md",
+    "LICENSE"
+  ],
+  "devDependencies": {
+    "@types/sharp": "^0.30.4"
+  },
+  "dependencies": {
+    "gifenc": "*",
+    "sharp": "*"
+  }
+}

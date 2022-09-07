@@ -43,16 +43,8 @@ export declare interface GIFEncoder {
     bytes(): Uint8Array;
     bytesView(): Uint8Array;
     writeByte(byte: Number): void;
-    writeBytes(
-      data: Number[],
-      offset: Number = 0,
-      byteLength: Number = data.length
-    ): void;
-    writeBytesView(
-      data: Uint8Array,
-      offset: Number = 0,
-      byteLength: Number = data.byteLength
-    ): void;
+    writeBytes(data: Number[], offset: Number, byteLength: Number): void;
+    writeBytesView(data: Uint8Array, offset: Number, byteLength: Number): void;
   };
   finish(): void;
   bytes(): Uint8Array;
@@ -62,7 +54,7 @@ export declare interface GIFEncoder {
     index: Uint8Array,
     width: Number,
     height: Number,
-    opts: GifEncoderFrameOptions = {}
+    opts: GifEncoderFrameOptions
   ): void;
   reset(): void;
 }
@@ -94,7 +86,7 @@ export declare interface GifOptions {
   sharpOptions?: SharpOptions;
   width?: Number;
   height?: Number;
-  delay?: Number;
+  delay?: Number | Number[];
   repeat?: Number;
   transparent?: Boolean;
   maxColors?: Number;

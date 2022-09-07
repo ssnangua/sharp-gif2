@@ -124,16 +124,16 @@ const GIF = require("sharp-gif2");
   - `sharpOptions` Object _(optional)_ - Sharp constructor [options](https://sharp.pixelplumbing.com/api-constructor#parameters).
   - `width` Number _(optional)_ - Width, in pixels, of the GIF to output.
   - `height` Number _(optional)_ - Height, in pixels, of the GIF to output.
-  - `delay` Number _(optional)_ - Delay(s) between animation frames (in milliseconds).
+  - `delay` (Number | Number[]) _(optional)_ - Delay(s) between animation frames (in milliseconds).
   - `repeat` Number _(optional)_ - Number of animation iterations, use `0` for infinite animation. Default by `0`.
-  - `transparent` Boolean _(optional)_ - Enable 1-bit transparency for the GIF.
+  - `transparent` Boolean _(optional)_ - Enable 1-bit transparency for the GIF. Default by `false`.
   - `maxColors` Number _(optional)_ - Quantize the total number of colors down to a reduced palette no greater than maxColors. Default by `256`.
-  - `format` ("rgb565" | "rgb444" | "rgba4444") _(optional)_ - Color format. Default by `"rgb565"`.
+  - `format` ("rgb565" | "rgb444" | "rgba4444") _(optional)_ - Color format. Default by `rgb565`.
     - `rgb565` means 5 bits red, 6 bits green, 5 bits blue (better quality, slower)
     - `rgb444` is 4 bits per channel (lower quality, faster)
     - `rgba4444` is the same as above but with alpha support
   - `resizeTo` ("largest" | "smallest") _(optional)_ - Resize all frame to the `largest` frame or `smallest` frame size. Default by `largest`.
-  - `resizeType` ("zoom" | "crop") _(optional)_ - `zoom` use sharp.resize(), `crop` use sharp.extend() and sharp.extract().
+  - `resizeType` ("zoom" | "crop") _(optional)_ - `zoom` use sharp.resize(), `crop` use sharp.extend() and sharp.extract(). Default by `zoom`.
   - `resizeOptions` [sharp.ResizeOptions](https://sharp.pixelplumbing.com/api-resize#parameters) _(optional)_ - Options for sharp.resize().
   - `extendBackground` [sharp.Color](https://www.npmjs.org/package/color) _(optional)_ - Background option for sharp.extend().
   - `gifEncoderOptions` Object _(optional)_ - gifenc [GIFEncoder()](https://github.com/mattdesl/gifenc#gif--gifencoderopts--) options.
@@ -148,7 +148,7 @@ Returns `Gif` - Return a instance of Gif Contains the following methods:
 
 Returns `Gif` - Return the Gif instance for chaining.
 
-#### `gif.toSharp(progress?: Function, encoder?: GifEncoder): Promise<Sharp>`
+#### `gif.toSharp(progress?: Function, encoder?: GIFEncoder): Promise<Sharp>`
 
 Encode all frames and resolve with an animated Sharp instance.
 
@@ -156,17 +156,19 @@ Encode all frames and resolve with an animated Sharp instance.
   - `info` Object - **Note** that the frames count contains GIF header end footer (as 2 frames).
     - `total` Number - Total frames count.
     - `encoded` Number - Encoded frames count.
-- `encoder` GifEncoder _(optional)_ - Custom GifEncoder.
+- `encoder` GIFEncoder _(optional)_ - Custom [GIFEncoder](https://github.com/mattdesl/gifenc#gif--gifencoderopts--).
 
 Returns `Promise<Sharp>` - Resolve with an instance of Sharp.
 
-#### `gif.toBuffer(progress?: Function, encoder?: GifEncoder): Promise<Buffer>`
+#### `gif.toBuffer(progress?: Function, encoder?: GIFEncoder): Promise<Buffer>`
 
 Encode all frames and resolve with an animated GIF buffer.
 
 #### `gif.getEncoder(options?: Object): GIFEncoder`
 
-Return a GIFEncoder. See [GIFEncoder](https://github.com/mattdesl/gifenc#gif--gifencoderopts--).
+- `options` Object _(optional)_ - gifenc [GIFEncoder()](https://github.com/mattdesl/gifenc#gif--gifencoderopts--) options.
+
+Return a GIFEncoder.
 
 ### `GIF.readGif(image: Sharp): GifReader`
 

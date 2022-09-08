@@ -140,7 +140,7 @@ class Gif {
         }
       }
 
-      const { buffer } = await frame.ensureAlpha(0).raw(rawOptions).toBuffer();
+      const { buffer } = await frame.ensureAlpha().raw(rawOptions).toBuffer();
       const data = new Uint8ClampedArray(buffer);
       const palette = quantize(data, maxColors, {
         format,

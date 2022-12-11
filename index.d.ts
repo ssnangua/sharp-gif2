@@ -98,7 +98,7 @@ export declare interface GifOptions {
   rawOptions?: RawOptions;
 }
 
-export declare interface ProgressHandler {
+export declare interface EncodeProgressHandler {
   (progress: { total: Number; encoded: Number }): void;
 }
 
@@ -123,12 +123,16 @@ export declare class Gif {
    * Encode all frames and resolve with an animated GIF buffer
    * @param encoder
    */
-  toBuffer(progress?: ProgressHandler, encoder?: GIFEncoder): Promise<Buffer>;
+  toBuffer(progress?: EncodeProgressHandler, encoder?: GIFEncoder): Promise<Buffer>;
   /**
    * Encode all frames and resolve with an animated sharp instance
    * @param encoder
    */
-  toSharp(progress?: ProgressHandler, encoder?: GIFEncoder): Promise<Sharp>;
+  toSharp(progress?: EncodeProgressHandler, encoder?: GIFEncoder): Promise<Sharp>;
+}
+
+export declare interface CutProgressHandler {
+  (progress: { total: Number; cutted: Number }): void;
 }
 
 export declare class GifReader {
@@ -136,7 +140,7 @@ export declare class GifReader {
   /**
    * Cut GIF frames
    */
-  toFrames(): Promise<Sharp[]>;
+  toFrames(progress?: CutProgressHandler): Promise<Sharp[]>;
   /**
    * Create Gif from cutted frames
    * @param options

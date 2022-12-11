@@ -6,13 +6,14 @@ class GifReader {
     this.image = image;
   }
 
-  async toFrames() {
+  async toFrames(progress = () => {}) {
     let { image } = this;
     const { pages, width, pageHeight } = await image.metadata();
     const frames = [];
     if (pages > 1) {
       image = sharp(await image.png().toBuffer());
       for (let i = 0; i < pages; i++) {
+        progress({ cutted: i, total: pages });
         const frame = image.clone().extract({
           left: 0,
           top: pageHeight * i,

@@ -180,9 +180,14 @@ Return a GIFEncoder.
 
 Returns `GifReader` - Return a instance of GifReader Contains the following methods:
 
-#### `reader.toFrames(): Promise<Sharp[]>`
+#### `reader.toFrames(progress?: Function): Promise<Sharp[]>`
 
 Cut GIF frames.
+
+- `progress` (info: Object) => void _(optional)_ - Frames cutting progress.
+  - `info` Object
+    - `cutted` Number - cutted frames count.
+    - `total` Number - Total frames count.
 
 Returns `Promise<Sharp[]>` - Resolve with cutted frames (an array of instance of Sharp).
 
@@ -197,3 +202,9 @@ Returns `Promise<Gif>` - Resolve with an instance of Gif.
 A shortcut to create a Gif with the cutted frames, equal to:
 
 `GIF.createGif(options).addFrame(reader.frames || (await reader.toFrames()));`
+
+## Change Log
+
+### 0.1.3
+
+- Feature: `reader.toFrames(progress)` adds progress option.
